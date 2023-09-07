@@ -9,8 +9,24 @@ let inputPrice = document.querySelector('#input-price') ;
 let inputDescription = document.querySelector('#input-description') ;
 
 // prepariamo la lista scatola vuota dove inser dentro elem
-const gifts = [];
- 
+let gifts = [];
+//se vogliamo  che browser si ricordi della lista  usiamo localstorage creo chiave
+const local_storage_Key = '__xmas-list__';
+
+//controllo se ci sono elementi salvati nello storage
+const prewList = localStorage.getItem(local_storage_Key);
+//controllo se esiste se lo trovi...
+if(prewList){
+	//step 1.utilizamo lista precedente al posto di quella vuota
+	gifts = JSON.parse(prewList);
+	//step 2. ricalcolo
+	calcolateTotale()
+	//step 3. mosta in pag gift
+	mostraGift();
+}
+
+
+
 //----------- eventi dinanici---------
 //attiviamo il form 
 form.addEventListener('submit',function(event){
@@ -52,6 +68,8 @@ form.addEventListener('submit',function(event){
 	//step 2. agg l'oggetoo alla lista
 	gifts.push(newGift);
 	console.log(gifts);
+	//step 2/a. local storage aggiornare la lista dopo il caricamento
+	localStorage.setItem(local_storage_Key, JSON.stringify(gifts));
 	//step 3. calcoliamo il totale
 	calcolateTotale();
 	//step 4. mostriamo in pag lista dei regali
@@ -135,9 +153,15 @@ const deleteButons = document.querySelectorAll('.gift_btn');
 
 //funzione elimina gift
 function removeGift(index){
-	//rimuovo elemento dalla lista
+	//step 1. rimuovo elemento dalla lista
 	gifts.splice(index,1)
 	console.log(gifts);
-	mostraGift();
+	//step 1/a. riaggiorno lo storage
+	localStorage.setItem(local_storage_Key, JSON.stringify(gifts));
+
+	//step 2. ricalcolo totale
 	calcolateTotale();
+
+	//step 3. visualizzare in paggina
+	mostraGift();
 }

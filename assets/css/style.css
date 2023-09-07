@@ -4,19 +4,19 @@
     box-sizing: border-box;
 
 }
+html{
+    background-color:  #d4d7f5; 
+}
 .wrapper {
     height: 100%;
 }
 .container {
     max-width: 500px;
     margin: 0 auto;
-    background-color:  #d4d7f5; 
+    /* background-color:  #d4d7f5;  */
     height: 100%;
 }
-header{
-   
-    /* background-color:  #d4d7f5;  */
-}
+
 .header-top {
     height: 150px;
     line-height: 1;
@@ -46,7 +46,7 @@ main{
     /* background-color:  #d4d7f5;  */
 
 }
-.gifts {
+.gifts-list {
     padding: 10px;
 }
 .gift {
@@ -54,6 +54,7 @@ main{
     display: flex;
     border-radius: 8px;
     border: 3px solid #fff;
+    margin: 10px 0;
 }
 .gift-info{
 width: 75%;
